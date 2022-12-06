@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import AsteroidByID from "../component/AsteroidByID";
 import { BrowserRouter } from "react-router-dom";
 
-test("disply heading for asteroid by id", () => {
+test("display heading for asteroid by id", () => {
   render(
     <BrowserRouter>
       <AsteroidByID />

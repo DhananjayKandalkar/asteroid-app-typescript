@@ -3,6 +3,16 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import Form from "../component/Form";
 import { BrowserRouter } from "react-router-dom";
 
+test("Form heading should be render", () => {
+  render(
+    <BrowserRouter>
+      <Form />
+    </BrowserRouter>
+  );
+  const headingElement = screen.getByText(/Asteroid App In TypeScript/i);
+  expect(headingElement).toBeInTheDocument();
+});
+
 test("id input should be render", () => {
   render(
     <BrowserRouter>
@@ -15,26 +25,12 @@ test("id input should be render", () => {
   expect(idInputElement).toBeInTheDocument();
 });
 
-
-
-
-test("random asteroids click should render after fetching", () => {
+test("render the user id form with 2 buttons", async () => {
   render(
     <BrowserRouter>
       <Form />
     </BrowserRouter>
   );
-  const buttonElement = screen.getByTestId("input-submit");
-  const idInputElement = screen.getByPlaceholderText(/find by id for-ex:3542519/i)
-
-  const testValue = "inpValue";
-
-  fireEvent.change(idInputElement, {target: {value : testValue}})
-  fireEvent.click(buttonElement);
-  
-  expect(buttonElement).toHaveBeenCalled();
+  const buttonElement = await screen.findAllByRole("button");
+  expect(buttonElement).toHaveLength(2);
 });
-
-
-
-
